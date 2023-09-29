@@ -29,4 +29,4 @@ E novamente, após o envio do formulário, será coletado a data e hora na qual 
 <img src="/resources/DiagramaClasses.png">
 
 ### Diagrama de Componentes
-<img src="/resources/DiagramaComponentes.png">
+<img src="/resources/DiagramaComponentes.jpeg">
