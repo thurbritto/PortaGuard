@@ -1,8 +1,9 @@
 # SistemaPortariaEmpresarial
-O software deve ter uma interface minimalista, prática e intuitiva, para que o usuário (porteiro) possa entender facilmente o funcionamento do sistema. O sistema deve ter tais utilidades:
+O software terá uma interface minimalista, prática e intuitiva, para que o usuário(porteiro) possa entender facilmente o funcionamento do sistema.
 
-Tecnologias que serão utilizadas: Java, Microsoft SQL Server, HTML e CSS. 
-Periféricos: Computador, monitor touch, teclado, mouse, no-break. (O sistema requer conexão com a internet.)
+Tecnologias que serão utilizadas: Java, Microsoft SQL Server, HTML e CSS.
+
+Periféricos necessários: Computador, monitor touch, teclado, mouse, no-break. (O sistema requer conexão com a internet.)
 
 ## Recursos Principais:
 - **Registro de Visitantes:** Como qualquer outra portaria, o sistema irá solicitar os dados de entrada e o porteiro deve inserir os dados do visitante, como: Nome, CPF, Telefone, Nome da Empresa, etc. Assim que os dados forem coletados e o formulário for enviado, o sistema irá coletar a data e hora que o visitante foi registrado e atribuir um ID único para o mesmo.
