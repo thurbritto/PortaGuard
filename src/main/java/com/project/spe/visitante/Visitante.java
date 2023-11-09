@@ -19,6 +19,47 @@ import java.time.format.DateTimeFormatter;
 public class Visitante {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public Long getCPF() {
+        return CPF;
+    }
+
+    public String getPlacaCarro() {
+        return placaCarro;
+    }
+
+    public String getDataHora() {
+        return dataHora;
+    }
+
+    public String getNomeEmpresa() {
+        return nomeEmpresa;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Long getTelefone() {
+        return telefone;
+    }
+
+    public String getSituacao() {
+        return situacao;
+    }
+
+    public String getMotivo() {
+        return motivo;
+    }
+
     private String nome;
     private Long CPF;
     private String placaCarro;

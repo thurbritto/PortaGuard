@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 @RestController
 @RequestMapping("visitante")
@@ -21,13 +23,26 @@ public class VisitanteController {
     public void registrarVisitante(@RequestBody VisitanteRequestDTO data) {
         Visitante dadosVisitante = new Visitante(data);
         repository.save(dadosVisitante);
-        return;
     }
+
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping
-    public List<VisitanteResponseDTO> getAll(){
+    public List<VisitanteResponseDTO> getAll() {
 
         List<VisitanteResponseDTO> listaVisitantes = repository.findAll().stream().map(VisitanteResponseDTO::new).toList();
         return listaVisitantes;
+    }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @DeleteMapping
+    public void deleteVisitor(@RequestBody Long id) {
+        repository.deleteById(id);
+    }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @PutMapping
+    public void updateVisitor(@RequestBody Long id, Optional<String> nome) {
+        Optional<VisitanteResponseDTO> visitante = repository.findById(id).map(VisitanteResponseDTO::new);
+
     }
 }
