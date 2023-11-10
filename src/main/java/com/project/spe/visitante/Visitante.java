@@ -19,6 +19,29 @@ import java.time.format.DateTimeFormatter;
 public class Visitante {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String nome;
+    private Long CPF;
+    private String placaCarro;
+    private String dataHora;
+    private String nomeEmpresa;
+    private String email;
+    private Long telefone;
+    private String situacao;
+    private String motivo;
+    private Long idPorteiro;
+
+    public Visitante(VisitanteRequestDTO data) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        this.nome = data.nome();
+        this.CPF = data.CPF();
+        this.placaCarro = data.placaCarro();
+        this.dataHora = dtf.format(LocalDateTime.now());
+        this.nomeEmpresa = data.nomeEmpresa();
+        this.email = data.email();
+        this.telefone = data.telefone();
+        this.situacao = data.situacao();
+        this.motivo = data.motivo();
+    }
 
     public Long getId() {
         return id;
@@ -58,28 +81,5 @@ public class Visitante {
 
     public String getMotivo() {
         return motivo;
-    }
-
-    private String nome;
-    private Long CPF;
-    private String placaCarro;
-    private String dataHora;
-    private String nomeEmpresa;
-    private String email;
-    private Long telefone;
-    private String situacao;
-    private String motivo;
-
-    public Visitante(VisitanteRequestDTO data) {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-        this.nome = data.nome();
-        this.CPF = data.CPF();
-        this.placaCarro = data.placaCarro();
-        this.dataHora = dtf.format(LocalDateTime.now());
-        this.nomeEmpresa = data.nomeEmpresa();
-        this.email = data.email();
-        this.telefone = data.telefone();
-        this.situacao = data.situacao();
-        this.motivo = data.motivo();
     }
 }

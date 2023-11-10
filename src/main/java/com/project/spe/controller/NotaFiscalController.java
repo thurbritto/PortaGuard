@@ -4,9 +4,6 @@ import com.project.spe.notafiscal.NotaFiscal;
 import com.project.spe.notafiscal.NotaFiscalRepository;
 import com.project.spe.notafiscal.NotaFiscalRequestDTO;
 import com.project.spe.notafiscal.NotaFiscalResponseDTO;
-import com.project.spe.visitante.Visitante;
-import com.project.spe.visitante.VisitanteRequestDTO;
-import com.project.spe.visitante.VisitanteResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,5 +29,11 @@ public class NotaFiscalController {
 
         List<NotaFiscalResponseDTO> listaNotaFiscais = repository.findAll().stream().map(NotaFiscalResponseDTO::new).toList();
         return listaNotaFiscais;
+    }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @DeleteMapping
+    public void deleteNotaFiscal(@RequestBody Long id) {
+        repository.deleteById(id);
     }
 }

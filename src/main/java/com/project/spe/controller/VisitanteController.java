@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @RestController
 @RequestMapping("visitante")
@@ -27,8 +26,7 @@ public class VisitanteController {
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping
-    public List<VisitanteResponseDTO> getAll() {
-
+    public List<VisitanteResponseDTO> getAll(){
         List<VisitanteResponseDTO> listaVisitantes = repository.findAll().stream().map(VisitanteResponseDTO::new).toList();
         return listaVisitantes;
     }
@@ -43,6 +41,5 @@ public class VisitanteController {
     @PutMapping
     public void updateVisitor(@RequestBody Long id, Optional<String> nome) {
         Optional<VisitanteResponseDTO> visitante = repository.findById(id).map(VisitanteResponseDTO::new);
-
     }
 }

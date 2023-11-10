@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-
 @Table(name = "nf")
 @Entity(name = "nf")
 @Getter
@@ -26,6 +25,22 @@ public class NotaFiscal {
     private String nomeEmpresa;
     private String email;
     private Long telefone;
+    private Long numeroNF;
+    private String situacao;
+    private Long idPorteiro;
+
+    public NotaFiscal(NotaFiscalRequestDTO data) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        this.nome = data.nome();
+        this.CPF = data.CPF();
+        this.placaCarro = data.placaCarro();
+        this.dataHora = dtf.format(LocalDateTime.now());
+        this.nomeEmpresa = data.nomeEmpresa();
+        this.email = data.email();
+        this.telefone = data.telefone();
+        this.numeroNF = data.numeroNF();
+        this.situacao = data.situacao();
+    }
 
     public Long getId() {
         return id;
@@ -59,21 +74,11 @@ public class NotaFiscal {
         return telefone;
     }
 
-    public String getSituacao() {
-        return situacao;
+    public Long getNumeroNF() {
+        return numeroNF;
     }
 
-    private String situacao;
-
-    public NotaFiscal(NotaFiscalRequestDTO data) {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-        this.nome = data.nome();
-        this.CPF = data.CPF();
-        this.placaCarro = data.placaCarro();
-        this.dataHora = dtf.format(LocalDateTime.now());
-        this.nomeEmpresa = data.nomeEmpresa();
-        this.email = data.email();
-        this.telefone = data.telefone();
-        this.situacao = data.situacao();
+    public String getSituacao() {
+        return situacao;
     }
 }
