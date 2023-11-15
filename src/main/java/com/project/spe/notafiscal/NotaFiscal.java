@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -21,7 +22,8 @@ public class NotaFiscal {
     private String nome;
     private Long CPF;
     private String placaCarro;
-    private String dataHora;
+    @Column(columnDefinition = "TIMESTAMP")
+    private Timestamp dataHora;
     private String nomeEmpresa;
     private String email;
     private Long telefone;
@@ -30,11 +32,10 @@ public class NotaFiscal {
     private Long idPorteiro;
 
     public NotaFiscal(NotaFiscalRequestDTO data) {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        this.dataHora = Timestamp.valueOf(LocalDateTime.now());
         this.nome = data.nome();
         this.CPF = data.CPF();
         this.placaCarro = data.placaCarro();
-        this.dataHora = dtf.format(LocalDateTime.now());
         this.nomeEmpresa = data.nomeEmpresa();
         this.email = data.email();
         this.telefone = data.telefone();
@@ -58,7 +59,7 @@ public class NotaFiscal {
         return placaCarro;
     }
 
-    public String getDataHora() {
+    public Timestamp getDataHora() {
         return dataHora;
     }
 
