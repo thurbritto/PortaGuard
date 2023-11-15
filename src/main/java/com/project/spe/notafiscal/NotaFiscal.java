@@ -6,8 +6,10 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Table(name = "nf")
 @Entity(name = "nf")
@@ -21,25 +23,28 @@ public class NotaFiscal {
     private String nome;
     private Long CPF;
     private String placaCarro;
-    private String dataHora;
+    private String data;
+    private String hora;
     private String nomeEmpresa;
     private String email;
     private Long telefone;
-    private Long numeroNF;
     private String situacao;
-    private Long idPorteiro;
+    private Long numeroNF;
+    private Long porteiro;
 
     public NotaFiscal(NotaFiscalRequestDTO data) {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
         this.nome = data.nome();
         this.CPF = data.CPF();
         this.placaCarro = data.placaCarro();
-        this.dataHora = dtf.format(LocalDateTime.now());
         this.nomeEmpresa = data.nomeEmpresa();
         this.email = data.email();
         this.telefone = data.telefone();
-        this.numeroNF = data.numeroNF();
         this.situacao = data.situacao();
+        this.numeroNF = data.numeroNF();
+        this.data = simpleDateFormat.format(Date.valueOf(LocalDate.now()));
+        this.hora = String.valueOf(LocalTime.now().withNano(0));
+        this.porteiro = data.porteiro();
     }
 
     public Long getId() {
@@ -58,10 +63,6 @@ public class NotaFiscal {
         return placaCarro;
     }
 
-    public String getDataHora() {
-        return dataHora;
-    }
-
     public String getNomeEmpresa() {
         return nomeEmpresa;
     }
@@ -74,11 +75,22 @@ public class NotaFiscal {
         return telefone;
     }
 
-    public Long getNumeroNF() {
-        return numeroNF;
-    }
-
     public String getSituacao() {
         return situacao;
+    }
+
+    public Long getPorteiro() {
+        return porteiro;
+    }
+    public String getData() {
+        return data;
+    }
+
+    public String getHora() {
+        return hora;
+    }
+
+    public Long getNumeroNF() {
+        return numeroNF;
     }
 }

@@ -1,5 +1,6 @@
 package com.project.spe.controller;
 
+import com.project.spe.dtos.FiltroVisitanteDTO;
 import com.project.spe.visitante.Visitante;
 import com.project.spe.visitante.VisitanteRepository;
 import com.project.spe.visitante.VisitanteRequestDTO;
@@ -7,10 +8,7 @@ import com.project.spe.visitante.VisitanteResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("visitante")
@@ -35,15 +33,16 @@ public class VisitanteController {
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/filter")
-    public List<VisitanteResponseDTO> filter(
-            @RequestParam(required = false) String nome,
-            @RequestParam(required = false) Long cpf,
-            @RequestParam(required = false) String placaCarro,
-            @RequestParam(required = false) LocalDateTime dataHora,
-            @RequestParam(required = false) String nomeEmpresa,
-            @RequestParam(required = false) String situacao) {
+    public List<VisitanteResponseDTO> filter(@RequestBody FiltroVisitanteDTO filtro) {
+        String nome = filtro.getNome();
+        Long CPF = filtro.getCPF();
+        String placaCarro = filtro.getPlacaCarro();
+        String nomeEmpresa = filtro.getNomeEmpresa();
+        String situacao = filtro.getSituacao();
+        String data = filtro.getData();
+        String hora = filtro.getHora();
 
-        List<Visitante> visitantesFiltrados = repository.findVisitanteByFiltros(nome, cpf, placaCarro, dataHora, nomeEmpresa, situacao);
+        List<Visitante> visitantesFiltrados = repository.findVisitanteByFiltros(nome, CPF, placaCarro, nomeEmpresa, situacao, data, hora);
 
         List<VisitanteResponseDTO> listaVisitantes = visitantesFiltrados.stream()
                 .map(VisitanteResponseDTO::new)

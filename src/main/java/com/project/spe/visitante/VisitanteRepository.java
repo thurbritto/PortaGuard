@@ -5,23 +5,29 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
+import java.sql.Date;
+import java.sql.Time;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface VisitanteRepository extends JpaRepository<Visitante, Long> {
-    @Query("SELECT v FROM visitantes v WHERE " +
-            "(:nome IS NULL OR v.nome = :nome) AND " +
-            "(:cpf IS NULL OR v.CPF = :cpf) AND " +
-            "(:placaCarro IS NULL OR v.placaCarro = :placaCarro) AND " +
-            "(:dataHora IS NULL OR v.dataHora = :dataHora) AND " +
-            "(:nomeEmpresa IS NULL OR v.nomeEmpresa = :nomeEmpresa) AND " +
-            "(:situacao IS NULL OR v.situacao = :situacao)")
-    List<Visitante> findVisitanteByFiltros(String nome, Long cpf, String placaCarro, @Param("dataHora") LocalDateTime dataHora, String nomeEmpresa, String situacao);
+    @Query("SELECT v FROM visitantes v " +
+            "WHERE (:nome IS NULL OR v.nome = :nome) " +
+            "AND (:cpf IS NULL OR v.CPF = :cpf) " +
+            "AND (:placaCarro IS NULL OR v.placaCarro = :placaCarro) " +
+            "AND (:nomeEmpresa IS NULL OR v.nomeEmpresa = :nomeEmpresa) " +
+            "AND (:data IS NULL OR v.data = :data) " +
+            "AND (:hora IS NULL OR v.hora = :hora) " +
+            "AND (:situacao IS NULL OR v.situacao = :situacao)")
+    List<Visitante> findVisitanteByFiltros(
+            @Param("nome") String nome,
+            @Param("cpf") Long cpf,
+            @Param("placaCarro") String placaCarro,
+            @Param("nomeEmpresa") String nomeEmpresa,
+            @Param("situacao") String situacao,
+            @Param("data") String data,
+            @Param("hora") String hora);
 }
-
 
 
 
