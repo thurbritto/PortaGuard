@@ -6,6 +6,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -22,25 +24,26 @@ public class Visitante {
     private String nome;
     private Long CPF;
     private String placaCarro;
-    private String dataHora;
+    private LocalDateTime dataHora;
     private String nomeEmpresa;
     private String email;
     private Long telefone;
     private String situacao;
     private String motivo;
-    private Long idPorteiro;
+    private Long porteiro;
 
     public Visitante(VisitanteRequestDTO data) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         this.nome = data.nome();
         this.CPF = data.CPF();
         this.placaCarro = data.placaCarro();
-        this.dataHora = dtf.format(LocalDateTime.now());
+        this.dataHora = LocalDateTime.now();
         this.nomeEmpresa = data.nomeEmpresa();
         this.email = data.email();
         this.telefone = data.telefone();
         this.situacao = data.situacao();
         this.motivo = data.motivo();
+        this.porteiro = data.porteiro();
     }
 
     public Long getId() {
@@ -59,7 +62,7 @@ public class Visitante {
         return placaCarro;
     }
 
-    public String getDataHora() {
+    public LocalDateTime getDataHora() {
         return dataHora;
     }
 
@@ -81,5 +84,8 @@ public class Visitante {
 
     public String getMotivo() {
         return motivo;
+    }
+    public Long getPorteiro() {
+        return porteiro;
     }
 }
