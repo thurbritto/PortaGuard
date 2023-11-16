@@ -1,5 +1,6 @@
 package com.project.spe.controller;
 
+import com.project.spe.dtos.FiltroNotaFiscalDTO;
 import com.project.spe.notafiscal.NotaFiscal;
 import com.project.spe.notafiscal.NotaFiscalRepository;
 import com.project.spe.notafiscal.NotaFiscalRequestDTO;
@@ -29,6 +30,27 @@ public class NotaFiscalController {
 
         List<NotaFiscalResponseDTO> listaNotaFiscais = repository.findAll().stream().map(NotaFiscalResponseDTO::new).toList();
         return listaNotaFiscais;
+    }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @GetMapping("/filter")
+    public List<NotaFiscalResponseDTO> filter(@RequestBody FiltroNotaFiscalDTO filtro) {
+        String nome = filtro.getNome();
+        Long CPF = filtro.getCPF();
+        String placaCarro = filtro.getPlacaCarro();
+        String nomeEmpresa = filtro.getNomeEmpresa();
+        String situacao = filtro.getSituacao();
+        String data = filtro.getData();
+        String hora = filtro.getHora();
+        Long numeroNF = filtro.getNumeroNF();
+
+        List<NotaFiscal> notasFiscaisFiltradas = repository.findNotaFiscalByFiltros(nome, CPF, placaCarro, nomeEmpresa, situacao, data, hora, numeroNF);
+
+        List<NotaFiscalResponseDTO> notasFiscais = notasFiscaisFiltradas.stream()
+                .map(NotaFiscalResponseDTO::new)
+                .toList();
+
+        return notasFiscais;
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")

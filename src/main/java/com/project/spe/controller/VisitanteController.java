@@ -1,5 +1,6 @@
 package com.project.spe.controller;
 
+import com.project.spe.dtos.FiltroVisitanteDTO;
 import com.project.spe.visitante.Visitante;
 import com.project.spe.visitante.VisitanteRepository;
 import com.project.spe.visitante.VisitanteRequestDTO;
@@ -8,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("visitante")
@@ -26,8 +26,28 @@ public class VisitanteController {
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping
-    public List<VisitanteResponseDTO> getAll(){
+    public List<VisitanteResponseDTO> getAll() {
         List<VisitanteResponseDTO> listaVisitantes = repository.findAll().stream().map(VisitanteResponseDTO::new).toList();
+        return listaVisitantes;
+    }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @GetMapping("/filter")
+    public List<VisitanteResponseDTO> filter(@RequestBody FiltroVisitanteDTO filtro) {
+        String nome = filtro.getNome();
+        Long CPF = filtro.getCPF();
+        String placaCarro = filtro.getPlacaCarro();
+        String nomeEmpresa = filtro.getNomeEmpresa();
+        String situacao = filtro.getSituacao();
+        String data = filtro.getData();
+        String hora = filtro.getHora();
+
+        List<Visitante> visitantesFiltrados = repository.findVisitanteByFiltros(nome, CPF, placaCarro, nomeEmpresa, situacao, data, hora);
+
+        List<VisitanteResponseDTO> listaVisitantes = visitantesFiltrados.stream()
+                .map(VisitanteResponseDTO::new)
+                .toList();
+
         return listaVisitantes;
     }
 
@@ -35,11 +55,5 @@ public class VisitanteController {
     @DeleteMapping
     public void deleteVisitor(@RequestBody Long id) {
         repository.deleteById(id);
-    }
-
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @PutMapping
-    public void updateVisitor(@RequestBody Long id, Optional<String> nome) {
-        Optional<VisitanteResponseDTO> visitante = repository.findById(id).map(VisitanteResponseDTO::new);
     }
 }
