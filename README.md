@@ -1,6 +1,7 @@
 # API PortaGuard - O Sistema de Portaria Empresarial
 
 **Tecnologias utilizadas:** Java.
+
 **Banco de Dados:** PostgreSQL.
 
 **Dependências:** 
