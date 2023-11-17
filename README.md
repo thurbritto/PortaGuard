@@ -14,6 +14,7 @@
 - Jakarta Validation API
 - PostgreSQL
 
+
 ## Recursos Principais:
 - **Registro de Usuários:** O administrador do sistema poderá realizar o registro de novos usuários(porteiros) conforme necessário.
 
@@ -31,14 +32,14 @@ E novamente, após o envio do formulário, será coletado a data e hora na qual 
 
 ## Representações visuais do sistema - Diagramas:
 
-### Diagrama de Casos de Uso
-<img src="/resources/DiagramaCasosDeUso.png">
-
-### Diagrama de Sequência
-<img src="/resources/DiagramaSequencia.png">
-
 ### Diagrama de Classes
 <img src="/resources/Diagrama de Classes - API Portaguard.png">
 
 ### Diagrama de Componentes
 <img src="/resources/DiagramaComponentes.jpeg">
+
+### Diagrama de Sequência
+<img src="/resources/DiagramaSequencia.png">
+
+### Diagrama de Casos de Uso
+<img src="/resources/DiagramaCasosDeUso.png">
