@@ -1,9 +1,7 @@
-# SistemaPortariaEmpresarial
-O software terá uma interface minimalista, prática e intuitiva, para que o usuário(porteiro) possa entender facilmente o funcionamento do sistema.
+# API PortaGuard - O Sistema de Portaria Empresarial
 
-Tecnologias que serão utilizadas: Java, Microsoft SQL Server, HTML e CSS.
-
-Periféricos necessários: Computador, monitor touch, teclado, mouse, no-break. (O sistema requer conexão com a internet.)
+Tecnologias utilizadas: Java, PostgreSQL.
+Dependências: Spring Boot, Spring Web, Spring DevTools, Project Lombok, Auth0 Java JWT, Spring Data JPA, Spring Security, PostgreSQL, Jakarta Validation API.
 
 ## Recursos Principais:
 - **Registro de Visitantes:** Como qualquer outra portaria, o sistema irá solicitar os dados de entrada e o porteiro deve inserir os dados do visitante, como: Nome, CPF, Telefone, Nome da Empresa, etc. Assim que os dados forem coletados e o formulário for enviado, o sistema irá coletar a data e hora que o visitante foi registrado e atribuir um ID único para o mesmo.
@@ -15,7 +13,7 @@ E novamente, após o envio do formulário, será coletado a data e hora na qual 
 
 - **Exclusão e Alteração de Dados:** Caso seja necessário, o administrador e/ou o porteiro poderão realizar alterações e exclusões de dados. (A empresa deve manter um backup dos dados para evitar possíveis problemas.)
 
-- **Filtro por Coluna:** O sistema irá implementar um filtro para o banco que dados, que permitirá buscas mais precisas.
+- **Filtro por Atributo:** O sistema irá implementar um filtro para o banco que dados, que permitirá buscas mais precisas.
 
 
 ## Representações visuais do sistema - Diagramas:
