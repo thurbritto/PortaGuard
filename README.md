@@ -27,7 +27,7 @@ E novamente, após o envio do formulário, será coletado a data e hora na qual 
 <img src="/resources/DiagramaSequencia.png">
 
 ### Diagrama de Classes
-<img src="/resources/DiagramaClasses.png">
+<img src="/resources/Diagrama de Classes - API Portaguard.png">
 
 ### Diagrama de Componentes
 <img src="/resources/DiagramaComponentes.jpeg">
