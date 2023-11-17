@@ -1,6 +1,7 @@
 # API PortaGuard - O Sistema de Portaria Empresarial
 
 Tecnologias utilizadas: Java, PostgreSQL.
+
 Dependências: Spring Boot, Spring Web, Spring DevTools, Project Lombok, Auth0 Java JWT, Spring Data JPA, Spring Security, PostgreSQL, Jakarta Validation API.
 
 ## Recursos Principais:
