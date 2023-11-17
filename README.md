@@ -1,8 +1,8 @@
 # API PortaGuard - O Sistema de Portaria Empresarial
 
-Tecnologias utilizadas: Java, PostgreSQL.
+**Tecnologias utilizadas:** Java, PostgreSQL.
 
-Dependências: Spring Boot, Spring Web, Spring DevTools, Project Lombok, Auth0 Java JWT, Spring Data JPA, Spring Security, PostgreSQL, Jakarta Validation API.
+**Dependências:** Spring Boot, Spring Web, Spring DevTools, Project Lombok, Auth0 Java JWT, Spring Data JPA, Spring Security, PostgreSQL, Jakarta Validation API.
 
 ## Recursos Principais:
 - **Registro de Visitantes:** Como qualquer outra portaria, o sistema irá solicitar os dados de entrada e o porteiro deve inserir os dados do visitante, como: Nome, CPF, Telefone, Nome da Empresa, etc. Assim que os dados forem coletados e o formulário for enviado, o sistema irá coletar a data e hora que o visitante foi registrado e atribuir um ID único para o mesmo.
