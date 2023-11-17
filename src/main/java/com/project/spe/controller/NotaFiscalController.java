@@ -1,10 +1,12 @@
 package com.project.spe.controller;
 
 import com.project.spe.dtos.FiltroNotaFiscalDTO;
+import com.project.spe.infra.security.AuthenticationFacade;
 import com.project.spe.notafiscal.NotaFiscal;
-import com.project.spe.notafiscal.NotaFiscalRepository;
 import com.project.spe.notafiscal.NotaFiscalRequestDTO;
 import com.project.spe.notafiscal.NotaFiscalResponseDTO;
+import com.project.spe.repositories.NotaFiscalRepository;
+import com.project.spe.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,11 +18,18 @@ public class NotaFiscalController {
 
     @Autowired
     private NotaFiscalRepository repository;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private AuthenticationFacade authenticationFacade;
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping
     public void registrarNotaFiscal(@RequestBody NotaFiscalRequestDTO data) {
+        String nomePorteiro = authenticationFacade.getAuthenticatedUserName();
+
         NotaFiscal dadosNotaFiscal = new NotaFiscal(data);
+        dadosNotaFiscal.setPorteiro(nomePorteiro);
         repository.save(dadosNotaFiscal);
     }
 

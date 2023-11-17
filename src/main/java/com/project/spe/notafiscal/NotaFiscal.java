@@ -30,7 +30,7 @@ public class NotaFiscal {
     private Long telefone;
     private String situacao;
     private Long numeroNF;
-    private Long porteiro;
+    private String porteiro;
 
     public NotaFiscal(NotaFiscalRequestDTO data) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -44,7 +44,6 @@ public class NotaFiscal {
         this.numeroNF = data.numeroNF();
         this.data = simpleDateFormat.format(Date.valueOf(LocalDate.now()));
         this.hora = String.valueOf(LocalTime.now().withNano(0));
-        this.porteiro = data.porteiro();
     }
 
     public Long getId() {
@@ -79,7 +78,7 @@ public class NotaFiscal {
         return situacao;
     }
 
-    public Long getPorteiro() {
+    public String getPorteiro() {
         return porteiro;
     }
     public String getData() {
@@ -92,5 +91,9 @@ public class NotaFiscal {
 
     public Long getNumeroNF() {
         return numeroNF;
+    }
+
+    public void setPorteiro(String nomePorteiro) {
+        this.porteiro = nomePorteiro;
     }
 }

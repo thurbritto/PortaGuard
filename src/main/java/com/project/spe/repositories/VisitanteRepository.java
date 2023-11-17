@@ -1,12 +1,11 @@
-package com.project.spe.visitante;
+package com.project.spe.repositories;
 
+import com.project.spe.visitante.Visitante;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Date;
-import java.sql.Time;
 import java.util.List;
 
 @Repository

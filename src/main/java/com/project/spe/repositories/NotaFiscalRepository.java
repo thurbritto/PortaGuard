@@ -1,6 +1,6 @@
-package com.project.spe.notafiscal;
+package com.project.spe.repositories;
 
-import com.project.spe.visitante.Visitante;
+import com.project.spe.notafiscal.NotaFiscal;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

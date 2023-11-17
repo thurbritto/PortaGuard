@@ -1,8 +1,10 @@
 package com.project.spe.controller;
 
 import com.project.spe.dtos.FiltroVisitanteDTO;
+import com.project.spe.infra.security.AuthenticationFacade;
+import com.project.spe.repositories.UserRepository;
+import com.project.spe.repositories.VisitanteRepository;
 import com.project.spe.visitante.Visitante;
-import com.project.spe.visitante.VisitanteRepository;
 import com.project.spe.visitante.VisitanteRequestDTO;
 import com.project.spe.visitante.VisitanteResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,19 +17,26 @@ import java.util.List;
 public class VisitanteController {
 
     @Autowired
-    private VisitanteRepository repository;
+    private VisitanteRepository visitanteRepository;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private AuthenticationFacade authenticationFacade;
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping
     public void registrarVisitante(@RequestBody VisitanteRequestDTO data) {
+        String nomePorteiro = authenticationFacade.getAuthenticatedUserName();
+
         Visitante dadosVisitante = new Visitante(data);
-        repository.save(dadosVisitante);
+        dadosVisitante.setPorteiro(nomePorteiro);
+        visitanteRepository.save(dadosVisitante);
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping
     public List<VisitanteResponseDTO> getAll() {
-        List<VisitanteResponseDTO> listaVisitantes = repository.findAll().stream().map(VisitanteResponseDTO::new).toList();
+        List<VisitanteResponseDTO> listaVisitantes = visitanteRepository.findAll().stream().map(VisitanteResponseDTO::new).toList();
         return listaVisitantes;
     }
 
@@ -42,7 +51,7 @@ public class VisitanteController {
         String data = filtro.getData();
         String hora = filtro.getHora();
 
-        List<Visitante> visitantesFiltrados = repository.findVisitanteByFiltros(nome, CPF, placaCarro, nomeEmpresa, situacao, data, hora);
+        List<Visitante> visitantesFiltrados = visitanteRepository.findVisitanteByFiltros(nome, CPF, placaCarro, nomeEmpresa, situacao, data, hora);
 
         List<VisitanteResponseDTO> listaVisitantes = visitantesFiltrados.stream()
                 .map(VisitanteResponseDTO::new)
@@ -54,6 +63,6 @@ public class VisitanteController {
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @DeleteMapping
     public void deleteVisitor(@RequestBody Long id) {
-        repository.deleteById(id);
+        visitanteRepository.deleteById(id);
     }
 }

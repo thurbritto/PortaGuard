@@ -5,17 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.GeneratedColumn;
 
 import java.sql.Date;
-import java.sql.Time;
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 
 
 @Table(name = "visitantes")
@@ -37,7 +31,7 @@ public class Visitante {
     private Long telefone;
     private String situacao;
     private String motivo;
-    private Long porteiro;
+    private String porteiro;
 
     public Visitante(VisitanteRequestDTO data) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -49,7 +43,6 @@ public class Visitante {
         this.telefone = data.telefone();
         this.situacao = data.situacao();
         this.motivo = data.motivo();
-        this.porteiro = data.porteiro();
         this.data = simpleDateFormat.format(Date.valueOf(LocalDate.now()));
         this.hora = String.valueOf(LocalTime.now().withNano(0));
     }
@@ -89,7 +82,7 @@ public class Visitante {
     public String getMotivo() {
         return motivo;
     }
-    public Long getPorteiro() {
+    public String getPorteiro() {
         return porteiro;
     }
     public String getData() {
@@ -98,5 +91,9 @@ public class Visitante {
 
     public String getHora() {
         return hora;
+    }
+
+    public void setPorteiro(String nomePorteiro) {
+        this.porteiro = nomePorteiro;
     }
 }

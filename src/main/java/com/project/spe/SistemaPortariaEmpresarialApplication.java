@@ -10,4 +10,5 @@ public class SistemaPortariaEmpresarialApplication {
 		SpringApplication.run(SistemaPortariaEmpresarialApplication.class, args);
 	}
 
+
 }
